@@ -30,6 +30,7 @@ const useActiveChannel = () => {
         remove(member.id);
       });
   
+      console.log("channel created")
       return () => {
         if (activeChannel) {
           pusherClient.unsubscribe('presence-messenger');
