@@ -4,7 +4,7 @@ import prisma from '@/app/libs/prismadb';
 import { pusherServer } from "@/app/libs/pusher";
 
 interface IParams{
-    conversationId: string;
+    conversationId?: string;
 };
 
 export async function POST(
@@ -29,10 +29,10 @@ export async function POST(
             messages: {
                 include:{
                     seen: true,
-                }
+                },
             },
            users: true,
-        }
+        },
       });
 
       if(!conversation){
@@ -73,7 +73,7 @@ export async function POST(
    
    await pusherServer.trigger(conversationId!, 'message:update', updatedMessage);
 
-   return NextResponse.json(updatedMessage);
+   return NextResponse.json('success');
 
 } catch (error: any) {
  console.log(error, "ERROR_MESSAGE_SEEN");
