@@ -20,7 +20,7 @@ const Body: React.FC<BodyProps> = ({
   const bottonRef = useRef<HTMLDivElement>(null);
 
   const {conversationId } = useConversation();
- 
+  
   useEffect(()=>{
    axios.post(`/api/conversations/${conversationId}/seen`)
   },[conversationId]);
@@ -35,7 +35,7 @@ const Body: React.FC<BodyProps> = ({
       setMessages((current) => {
         if (find(current, { id: message.id })) {
           return current;
-        }
+        }      
         return [...current, message];
       });
 
